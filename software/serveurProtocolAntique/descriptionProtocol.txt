@@ -1,0 +1,55 @@
+ProtocolAntique (256 octets)
+
+Entete du ProtocolAntique (3 octets)
+    operation (1 octet)
+    longueur (1 octet)
+    numero (1 octet)
+
+Contenu du ProtocolAntique (256 - 3 = 253 octets)
+
+Exemples :
+LS :
+    Carte reseau :
+        -operation = 0x01       // requete LS
+        -longueur = [0-252]     
+        -numero = 0             // la requete n'est pas fragmentée
+        -contenu                // chemin ou effectuer le ls
+
+    Serveur :
+        -operation = 0x11       // reponse au LS
+        -longueur = [0-252]
+        -numero = [0-255]       // entre 1 et 255 => numero du paquet => reponse fragmentée, si 0 dernier paquet
+        -contenu                // nom de fichier ou rien si numero = 0
+
+READ :
+    Carte reseau :
+        -operation = 0x02       // requete READ
+        -longueur = [0-252]
+        -numero = 0             // la requete n'est pas fragmentée
+        -contenu                // premier octet = longueur_nom = nombre d'octets a lire pour avoir le nom du fichier
+                                // chemin/fichier
+
+    Serveur :
+        -operation = 0x12       // reponse au READ
+        -longueur = [0-252]
+        -numero = [0-255]       // entre 1 et 255 => numero du paquet => reponse fragmentée, si 0 dernier paquet
+        -contenu                // N octets du fichier ou rien si numero = 0
+
+WRITE :
+    Carte reseau :
+        -operation = 0x03       // requete WRITE creation du fichier
+        -longueur = [0-252]
+        -numero = 0             // entre 1 et 255 => numero du paquet => reponse fragmentée, si 0 dernier paquet
+        -contenu                // Chemin pour ouvrir le fichier avce le nom du fichier : chemin/fichier
+
+    Carte reseau :
+        -operation = 0x13       // requete WRITE ecriture dans le fichier
+        -longueur = [0-252]
+        -numero = [1-252]       // entre 1 et 255 => numero du paquet => reponse fragmentée, si 0 dernier paquet
+        -contenu                // ligne a ecrire
+
+    Carte reseau :
+        -operation = 0x23       // requete WRITE fin
+        -longueur = [0-252]
+        -numero = 0             // 0 dernier paquet
+        -contenu                // rien

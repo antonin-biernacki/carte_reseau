@@ -1,0 +1,20 @@
+Pour tout compiler :
+	>> make
+
+Pour lancer le serveur qui recoit et traite les requetes envoyées par la carte :
+	>> ./serveur/serveur
+	
+Pour lancer le serveur qui simule la carte réseseau pour voir les reponses envoyées par le serveur (pas fou fou mais permet de constater que ca fonctionne):
+	>> ./testUDP/serveur_carte
+	
+Pour simuler une requete envoyée par la carte réseau :
+	Requête LS :
+		>> ./testUDP/testUDP ls <chemin>
+	
+	Requête READ :
+		>> ./testUDP/testUDP read <chemin/fichier>
+		
+	Requête Write :
+		>> ./testUDP/testUDP write <chemin/fichier> <ligne 1> ... <ligne n>
+		
+		/!\ Si vous écrivez des fichiers avec write merci de les supprimer vous mêmes le Makefile ne peut pas savoir ou vous l'avez créé :)
