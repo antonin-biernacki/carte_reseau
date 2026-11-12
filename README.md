@@ -15,6 +15,7 @@ Carte réseau USB conçue sous **KiCad**, construite autour d'un **ATmega**. Ell
 - [Compilation et téléversement](#compilation-et-téléversement)
 - [Utilisation](#utilisation)
 - [Fonctionnement interne](#fonctionnement-interne)
+- [Crédits](#crédits)
 
 ## Contexte
 
@@ -229,3 +230,7 @@ Une réponse fragmentée se termine toujours par un message de longueur 0 et de 
 - **`READ`** : ouvre le fichier avec `fopen`, envoie une réponse par ligne (`fgets`), puis le message de fin si la lecture est allée jusqu'au bout.
 - **`WRITE`** : mémorise le chemin reçu dans le message de début, puis ajoute chaque ligne au fichier. Le serveur vérifie que les numéros se suivent pour détecter un paquet perdu. Le message de fin déclenche la réponse `0x23`, avec un code de réussite ou d'erreur.
 - **Réponses** : elles sont envoyées par `messageUDP()` à `IP_LOOPBACK` sur le port `PORT_CARTE` (5000), ce qui correspond au mode simulation. Pour répondre à la vraie carte, ces constantes sont à adapter dans `serveur.h` (`IP_CARTE` vaut `10.0.0.2`).
+
+## Crédits
+
+- Thomas Delobelle
