@@ -1,4 +1,4 @@
-# Carte réseau USB pour ATmega32U4
+# Carte réseau USB à base d'ATmega
 
 Carte réseau USB conçue sous **KiCad**, construite autour d'un **ATmega**. Elle se présente comme une interface Ethernet (classe **RNDIS**, via la bibliothèque LUFA) et doit permettre à une carte mère de lire, écrire et lister des fichiers sur un PC, grâce à un protocole maison transporté en UDP : le **ProtocolAntique**. Un serveur C côté PC traite les requêtes.
 
@@ -127,7 +127,7 @@ Depuis `software/lufa-LUFA-210130-NSI/PicoCReseau/RNDISEthernet/` :
 
 ```bash
 make          # produit RNDISEthernet.hex
-make dfu      # téléverse sur la carte (ATmega32U4 en mode DFU)
+make dfu      # téléverse sur la carte (ATmega en mode DFU)
 make clean
 ```
 
@@ -154,7 +154,7 @@ make clean
 
 ### Avec la carte
 
-Branche la carte en USB, puis configure l'interface réseau qu'elle crée (`eth2` dans notre cas, vérifie son nom avec `ip link`) :
+Branchez la carte en USB, puis configurez l'interface réseau qu'elle crée (`eth2` dans notre cas, vérifiez son nom avec `ip link`) :
 
 ```bash
 sudo ip link set eth2 up
@@ -166,7 +166,7 @@ La carte a l'adresse `10.0.0.2` ; la configuration des adresses IP et MAC se tro
 
 ### Serveur PC
 
-Lance le serveur depuis `software/serveurProtocolAntique/` :
+Lancez le serveur depuis `software/serveurProtocolAntique/` :
 
 ```bash
 ./serveur/serveur
